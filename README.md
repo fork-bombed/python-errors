@@ -2,81 +2,108 @@
 
 Errors can be daunting to new programmers, use this list of errors to discover what's actually going wrong and how you can solve it. I will be building this repository up over time, feel free to contribute, but make sure your submission is in the same template as others.
 
-## Common Errors
+### Common Errors
 
+* [SyntaxError](#SyntaxError)
 * [IndentationError](#IndentationError)
 * [TabError](#TabError)
-* [SyntaxError](#SyntaxError)
 * [TypeError](#TypeError)
 
 
-## All Errors
+### All Errors
 
-* Exception
-    * ArithmeticError
-        * FloatingPointError
-        * OverflowError
-        * ZeroDivsionError
-    * AssertionError
-    * AttributeError
-    * BufferError
-    * EOFError
-    * ImportError
-        * ModuleNotFoundError
-    * LookupError
-        * IndexError
-        * KeyError
-    * MemoryError
-    * NameError
-        * UnboundLocalError
-    * OSError
-        * BlockingIOError
-        * ChildProcessError
-        * ConnectionError
-            * BrokenPipeError
-            * ConnectionAbortedError
-            * ConnectionRefusedError
-            * ConnectionResetError
-        * FileExistsError
-        * FileNotFoundError
-        * InterruptedError
-        * IsADirectoryError
-        * NotADirectoryError
-        * PermissionError
-        * TimeoutError
-    * ReferenceError
-    * RuntimeError
-        * NotImplementedError
-        * RecursionError
-    * StopIteration
-    * StopAsyncIteration
-    * [SyntaxError](#SyntaxError)
-        * [IndentationError](#IndentationError)
-            * [TabError](#TabError)
-    * SystemError
-    * [TypeError](#TypeError)
-    * ValueError
-        * UnicodeError
-            * UnicodeDecodeError
-            * UnicodeEncodeError
-            * UnicodeTranslateError
-    * Warning
-        * BytesWarning
-        * DeprecationWarning
-        * FutureWarning
-        * ImportWarning
-        * PendingDeprecationWarning
-        * ResourceWarning
-        * RuntimeWarning
-        * SyntaxWarning
-        * UnicodeWarning
-        * UserWarning
-* GeneratorExit
-* KeyboardInterrupt
-* SystemExit
+* ArithmeticError
+    * FloatingPointError
+    * OverflowError
+    * ZeroDivsionError
+* AssertionError
+* AttributeError
+* BufferError
+* EOFError
+* ImportError
+    * ModuleNotFoundError
+* LookupError
+    * IndexError
+    * KeyError
+* MemoryError
+* NameError
+    * UnboundLocalError
+* OSError
+    * BlockingIOError
+    * ChildProcessError
+    * ConnectionError
+        * BrokenPipeError
+        * ConnectionAbortedError
+        * ConnectionRefusedError
+        * ConnectionResetError
+    * FileExistsError
+    * FileNotFoundError
+    * InterruptedError
+    * IsADirectoryError
+    * NotADirectoryError
+    * PermissionError
+    * TimeoutError
+* ReferenceError
+* RuntimeError
+    * NotImplementedError
+    * RecursionError
+* StopIteration
+* StopAsyncIteration
+* [SyntaxError](#SyntaxError)
+    * [IndentationError](#IndentationError)
+        * [TabError](#TabError)
+* SystemError
+* [TypeError](#TypeError)
+* ValueError
+    * UnicodeError
+        * UnicodeDecodeError
+        * UnicodeEncodeError
+        * UnicodeTranslateError
+### Warnings
+* BytesWarning
+* DeprecationWarning
+* FutureWarning
+* ImportWarning
+* PendingDeprecationWarning
+* ResourceWarning
+* RuntimeWarning
+* SyntaxWarning
+* UnicodeWarning
+* UserWarning
+
+### Exceptions
+* BaseException
+    * Exception
+    * GeneratorExit
+    * KeyboardInterrupt
+    * SystemExit
+
+## SyntaxError
+Syntax errors are usually caused by typos in your program.
+
+### Problem
+If you spelled a keywork incorrectly it can cause your program to crash:
+
+```python
+>>> def add(x,y):
+...     retrun x + y
+  File "<stdin>", line 2
+    retrun x + y
+           ^
+SyntaxError: invalid syntax
+```
+
+### Solution
+Make sure that all your keywords are spelled correctly. Here is the solution:
+```python
+>>> def add(x,y):
+...     return x + y
+... 
+>>> add(1,2)
+3 
+```
 
 ## IndentationError
-
 Indentation errors are very common in Python since the syntax is dependant on whitespace. 
 
 This can also be caused by mixing your tabs and spaces together. For example, if you were to use a tab to indent a block of code and then use 4 spaces to indent the next, then it will error. This is a common error when copying code online, as it will likely copy as spaces whereas the rest of your code uses tabs or vice versa.
@@ -128,31 +155,6 @@ To solve this problem, make sure your IDE or text editor is set to automatically
 >>> get_name()
 Enter your name: John
 'John'
-```
-
-## SyntaxError
-Syntax errors are usually caused by typos in your program.
-
-### Problem
-If you spelled a keywork incorrectly it can cause your program to crash:
-
-```python
->>> def add(x,y):
-...     retrun x + y
-  File "<stdin>", line 2
-    retrun x + y
-           ^
-SyntaxError: invalid syntax
-```
-
-### Solution
-Make sure that all your keywords are spelled correctly. Here is the solution:
-```python
->>> def add(x,y):
-...     return x + y
-... 
->>> add(1,2)
-3 
 ```
 
 ## TypeError
