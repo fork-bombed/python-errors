@@ -6,8 +6,8 @@ Errors can be daunting to new programmers, use this list of errors to discover w
 
 * [IndentationError](#IndentationError)
 * [TabError](#TabError)
-* SyntaxError
-* TypeError
+* [SyntaxError](#SyntaxError)
+* [TypeError](#TypeError)
 
 
 ## All Errors
@@ -50,11 +50,11 @@ Errors can be daunting to new programmers, use this list of errors to discover w
         * RecursionError
     * StopIteration
     * StopAsyncIteration
-    * SyntaxError
+    * [SyntaxError](#SyntaxError)
         * [IndentationError](#IndentationError)
             * [TabError](#TabError)
     * SystemError
-    * TypeError
+    * [TypeError](#TypeError)
     * ValueError
         * UnicodeError
             * UnicodeDecodeError
@@ -102,7 +102,7 @@ Make sure that your code has correct indentation. Here is a solution to the abov
 ```
 
 ## TabError
-TabErrors are usually problems caused by your IDE or text editor converting some tabs into spaces and mixing tabs with spaces.
+Tab errors are usually problems caused by your IDE or text editor converting some tabs into spaces and mixing tabs with spaces.
 
 ### Problem
 In this example, I've mixed a tab and 4 spaces together and have visualised the tabs as (==) and the spaces as (••):
@@ -128,4 +128,55 @@ To solve this problem, make sure your IDE or text editor is set to automatically
 >>> get_name()
 Enter your name: John
 'John'
+```
+
+## SyntaxError
+Syntax errors are usually caused by typos in your program.
+
+### Problem
+If you spelled a keywork incorrectly it can cause your program to crash:
+
+```python
+>>> def add(x,y):
+...     retrun x + y
+  File "<stdin>", line 2
+    retrun x + y
+           ^
+SyntaxError: invalid syntax
+```
+
+### Solution
+Make sure that all your keywords are spelled correctly. Here is the solution:
+```python
+>>> def add(x,y):
+...     return x + y
+... 
+>>> add(1,2)
+3 
+```
+
+## TypeError
+Type errors are caused by applying an operation or function on incompatible types. 
+
+### Problem
+The most common occurence of this is concatenating strings and integers. In the example below, I try to add the age to the string I'm about to print:
+```python
+>>> def print_age(x):
+...     print('Your age is: ' + x)
+... 
+>>> print_age(25)
+Traceback (most recent call last):    
+  File "<stdin>", line 1, in <module> 
+  File "<stdin>", line 2, in print_age
+TypeError: must be str, not int  
+```
+
+### Solution
+In order to add the integer to the string, you'll need to conver the integer into a string by using `str()`. Here is the solution to the above problem:
+```python
+>>> def print_age(x):
+...     print('Your age is: ' + str(x))
+... 
+>>> print_age(25)
+Your age is: 25
 ```
