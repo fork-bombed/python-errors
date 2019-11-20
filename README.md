@@ -4,6 +4,9 @@ Errors can be daunting to new programmers, use this list of errors to discover w
 
 ### Common Errors
 
+* [ImportError](#ImportError)
+* [IndexError](#IndexError)
+* [KeyError](#KeyError)
 * [SyntaxError](#SyntaxError)
 * [IndentationError](#IndentationError)
 * [TabError](#TabError)
@@ -20,11 +23,11 @@ Errors can be daunting to new programmers, use this list of errors to discover w
 * AttributeError
 * BufferError
 * EOFError
-* ImportError
-    * ModuleNotFoundError
+* [ImportError](#ImportError)
+    * [ModuleNotFoundError](#ImportError)
 * LookupError
-    * IndexError
-    * KeyError
+    * [IndexError](#IndexError)
+    * [KeyError](#KeyError)
 * MemoryError
 * NameError
     * UnboundLocalError
@@ -77,6 +80,82 @@ Errors can be daunting to new programmers, use this list of errors to discover w
     * GeneratorExit
     * KeyboardInterrupt
     * SystemExit
+
+## ImportError
+This is caused when a module can't be imported correctly. This is most likely caused by mispelling the module name or not having the module installed. <br/>In versions **3.6+** this will throw `ModuleNotFoundError`
+
+### Problem
+If you try to import a module that doesn't exist, it will throw an error:
+```python
+>>> import fakemodule
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'fakemodule'
+```
+
+### Solution
+Make sure that you spelled your module name correctly and that you have it installed. To install your module, you can use **pip**:
+##### Python 2.x
+`pip install fakemodule`
+##### Python 3.x
+`python3 -m pip install fakemodule`<br/>
+or
+<br/>`pip3 install fakemodule`
+
+## IndexError
+This is caused when you try to access an index in a list that doesn't exist.
+
+### Problem
+If you're trying to check if an index exists, a common mistake is to check if the index isn't null, but this will just error if the index doesn't exist:
+```python
+>>> x = ['a','b','c','d']
+>>> if x[4] != None:
+...     print(x[4])
+... 
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: list index out of range
+```
+
+### Solution
+Instead of checking the index, you should check the length of the list to make sure that you're not trying to access an index that doesn't exist:
+```python
+>>> x = ['a','b','c','d']
+>>> if len(x) == 5:
+...     print(x[4])
+... 
+     # Prints nothing because the array has a lenght of 4
+     # Add another letter to the array to test it
+>>> x = ['a','b','c','d','e']
+>>> if len(x) == 5:
+...     print(x[4])
+... 
+e
+```
+
+## KeyError
+This is caused when you try to access a key that doesn't exist in a dictionary.
+
+### Problem
+In this scenario, I have a list of country populations. If the country I want the population of doesn't exist, it will error:
+```python
+>>> population = {'USA':'327.2 million','China':'1.386 billion','UK':'66.44 million'}
+>>> population['France']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'France'
+```
+
+### Solution
+There is a simple solution to this: `dict.get(key[, value])`<br/>
+We can use this to check if the key exists and, if not, return a default value:
+```python
+>>> population = {'USA':'327.2 million','China':'1.386 billion','UK':'66.44 million'}
+>>> population.get('France','Unknown')
+'Unknown'
+>>> population.get('USA','Unknown')
+'327.2 million'
+```
 
 ## SyntaxError
 Syntax errors are usually caused by typos in your program.
