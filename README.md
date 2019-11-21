@@ -7,10 +7,12 @@ Errors can be daunting to new programmers, use this list of errors to discover w
 * [ImportError](#ImportError)
 * [IndexError](#IndexError)
 * [KeyError](#KeyError)
+* [NameError](#NameError)
 * [SyntaxError](#SyntaxError)
 * [IndentationError](#IndentationError)
 * [TabError](#TabError)
 * [TypeError](#TypeError)
+* [ValueError](#ValueError)
 
 
 ### All Errors
@@ -29,7 +31,7 @@ Errors can be daunting to new programmers, use this list of errors to discover w
     * [IndexError](#IndexError)
     * [KeyError](#KeyError)
 * MemoryError
-* NameError
+* [NameError](#NameError)
     * UnboundLocalError
 * OSError
     * BlockingIOError
@@ -57,7 +59,7 @@ Errors can be daunting to new programmers, use this list of errors to discover w
         * [TabError](#TabError)
 * SystemError
 * [TypeError](#TypeError)
-* ValueError
+* [ValueError](#ValueError)
     * UnicodeError
         * UnicodeDecodeError
         * UnicodeEncodeError
@@ -155,6 +157,52 @@ We can use this to check if the key exists and, if not, return a default value:
 'Unknown'
 >>> population.get('USA','Unknown')
 '327.2 million'
+```
+
+## NameError
+Name errors are usually caused by typos in your variable names or by trying to access a variable that is not in scope.
+
+### Problem
+In this example, I try to access a variable that has been defined in a local scope (inside the `get_name()` function):
+```python
+>>> def get_name():
+...     name = input('Enter your name: ')
+...     print('Your name is ' + name)
+... 
+>>> get_name()
+Enter your name: John
+Your name is John
+>>> print(name)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'name' is not defined
+```
+
+### Solution
+To get variables from within a function, you can return the variable at the end of your function:
+```python
+>>> def get_name():
+...     name = input('Enter your name: ')
+...     return name
+... 
+>>> name = get_name()
+Enter your name: John
+>>> name
+'John'
+```
+You can also set a global variable outside the scope of the function and access it by using the `global` keyword:
+```python
+>>> name = 'John'
+>>> def get_name():
+...     global name
+...     name = input('Enter your name: ')
+... 
+>>> name
+'John'
+>>> get_name()
+Enter your name: Jane
+>>> name
+'Jane'
 ```
 
 ## SyntaxError
@@ -260,4 +308,32 @@ In order to add the integer to the string, you'll need to conver the integer int
 ... 
 >>> print_age(25)
 Your age is: 25
+```
+
+## ValueError
+Value errors are caused when a function or operation received an argument that has the right type but the value isn't correct.
+
+### Problem
+This is a common issue when converting strings to integers. If the string does not contain a number, then it cannot be converted:
+```python
+>>> def convert(number):
+...     return int(number)
+... 
+>>> convert('two')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in convert
+ValueError: invalid literal for int() with base 10: 'two'
+```
+
+### Solution
+This can be solved by checking if the string can be converted by using `str.isnumeric()`:
+```python
+>>> def convert(number):
+...     if number.isnumeric():
+...             return int(number)
+... 
+>>> convert('two')
+>>> convert('2')
+2
 ```
