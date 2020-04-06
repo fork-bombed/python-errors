@@ -51,7 +51,7 @@ Errors can be daunting to new programmers, use this list of errors to discover w
 * ReferenceError
 * RuntimeError
     * NotImplementedError
-    * RecursionError
+    * [RecursionError](#RecursionError)
 * StopIteration
 * StopAsyncIteration
 * [SyntaxError](#SyntaxError)
@@ -87,7 +87,7 @@ Errors can be daunting to new programmers, use this list of errors to discover w
 This is caused when dividing a number by zero.
 
 ### Problem
-In the example below we have a function that returns the number of points per person when given the total points and the number of people. If we have 100 points and want to split between two people, the function will return `50.0`. However, if we have 0 people, then the points per person would be 0. However, this will cause a `ZeroDivisionError` as we can't divide by 0.
+In the example below we have a function that returns the number of points per person when given the total points and the number of people. If we have 100 points and want to split between two people, the function will return `50.0`. If we have 0 people, then the points per person should be `0`, as we have no people to distribute the points over ([mathematical paradoxes](https://en.wikipedia.org/wiki/Division_by_zero)). However, this will cause a `ZeroDivisionError` as we can't divide by 0.
 ```py
 >>> def points_per_person(points, people):
 ...     return points/people
@@ -237,7 +237,7 @@ Enter your name: Jane
 'Jane'
 ```
 
-## RecursiveError
+## RecursionError
 This is caused by reaching the maximum recursive call depth for Python (1000 by default) which was put in place to avoid stack overflows.
 
 ### Problem
