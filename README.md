@@ -20,7 +20,7 @@ Errors can be daunting to new programmers, use this list of errors to discover w
 * ArithmeticError
     * FloatingPointError
     * OverflowError
-    * ZeroDivsionError
+    * [ZeroDivsionError](#ZeroDivsionError)
 * AssertionError
 * AttributeError
 * BufferError
@@ -235,6 +235,43 @@ You can also set a global variable outside the scope of the function and access 
 Enter your name: Jane
 >>> name
 'Jane'
+```
+
+## RecursiveError
+This is caused by reaching the maximum recursive call depth for Python (1000 by default) which was put in place to avoid stack overflows.
+
+### Problem
+In this example, we have a recursive function that calculates the factorial of a number. We're able to find `3!`, however, when we try to find `999!` (which is actually too big to display), we encounter a `RecursionError` as we have exceeded the maximum recursive depth.
+```py
+>>> def factorial(n):
+...     if n==1:
+...             return n
+...     return n*factorial(n-1)
+... 
+>>> factorial(3)
+6
+>>> factorial(999)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 4, in factorial
+  File "<stdin>", line 4, in factorial
+  File "<stdin>", line 4, in factorial
+  [Previous line repeated 995 more times]
+  File "<stdin>", line 2, in factorial
+RecursionError: maximum recursion depth exceeded in comparison
+```
+
+### Solution
+In some situations, you can try implementing your code iteratively rather than recursively, but I understand that's not always the best solution. To solve this, you can use the `sys` module to alter your recursive depth.
+```py
+>>> import sys
+>>> sys.getrecursionlimit()
+1000
+>>> sys.setrecursionlimit(2000)
+>>> sys.getrecursionlimit()
+2000
+>>> factorial(999)
+4023872600770937 ... (big number)
 ```
 
 ## SyntaxError
