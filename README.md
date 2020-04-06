@@ -83,6 +83,38 @@ Errors can be daunting to new programmers, use this list of errors to discover w
     * KeyboardInterrupt
     * SystemExit
 
+## ZeroDivsionError
+This is caused when dividing a number by zero.
+
+### Problem
+In the example below we have a function that returns the number of points per person when given the total points and the number of people. If we have 100 points and want to split between two people, the function will return `50.0`. However, if we have 0 people, then the points per person would be 0. However, this will cause a `ZeroDivisionError` as we can't divide by 0.
+```py
+>>> def points_per_person(points, people):
+...     return points/people
+... 
+>>> points_per_person(100,2)
+50.0
+>>> points_per_person(100,0)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in points_per_person
+ZeroDivisionError: division by zero
+```
+
+### Solution
+When dividing, you should always check if the denominator is 0 first.
+```py
+>>> def points_per_person(points, people):
+...     if people==0:
+...             return 0
+...     return points/people
+... 
+>>> points_per_person(100,2)
+50.0
+>>> points_per_person(100,0)
+0
+```
+
 ## ImportError
 This is caused when a module can't be imported correctly. This is most likely caused by mispelling the module name or not having the module installed. <br/>In versions **3.6+** this will throw `ModuleNotFoundError`
 
