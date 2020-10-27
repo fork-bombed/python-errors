@@ -2,6 +2,8 @@
 
 Errors can be daunting to new programmers, use this list of errors to discover what's actually going wrong and how you can solve it. I will be building this repository up over time, feel free to contribute, but make sure your submission is in the same template as others.
 
+:)
+
 ### Common Errors
 
 * [ImportError](#ImportError)
